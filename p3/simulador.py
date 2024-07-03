@@ -1,20 +1,26 @@
-# simulador.py
-
-# Clase Simulador
 class Simulador:
-    # Constructor de la clase
     def __init__(self):
-        # Comunidad a simular
+        """
+        Constructor para inicializar un objeto Simulador.
+        """
         self.comunidad = None
 
-    # Método para configurar la comunidad a simular
     def set_comunidad(self, comunidad):
+        """
+        Asigna una comunidad al simulador.
+
+        Parámetros:
+        comunidad (Comunidad): La comunidad que será simulada.
+        """
         self.comunidad = comunidad
 
-    # Método para ejecutar la simulación
     def run(self, pasos):
-        for paso in range(pasos):
-            print(f"Paso {paso+1}")
-            # lógica de simulación
+        """
+        Ejecuta la simulación por un número especificado de pasos.
 
-#
+        Parámetros:
+        pasos (int): Número de pasos a ejecutar en la simulación.
+        """
+        for paso in range(pasos):
+            print(f"Paso {paso + 1}")
+            # Lógica de simulación a implementar aquí

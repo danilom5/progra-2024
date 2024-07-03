@@ -7,13 +7,22 @@ with open('nombres_apellidos.csv', 'r') as file:
     next(reader)  # Omitir el encabezado
     nombres_apellidos = list(reader)
 
+# Lista de tribus disponibles
 tribus = ["Tribu A", "Tribu B", "Tribu C", "Tribu D"]
+
+# Número de alfas por tribu
 num_alfas_por_tribu = 1
 
 def generar_info_ciudadano():
+    """
+    Genera información de un ciudadano incluyendo nombre, apellido, tribu y si es alfa.
+
+    Retorna:
+    tuple: Contiene nombre (str), apellido (str), tribu (str) y es_alfa (int).
+    """
     nombre, apellido = random.choice(nombres_apellidos)
     tribu = random.choice(tribus)
-    es_alfa = False
+    es_alfa = 2  # 2 indica que no es alfa
     if random.randint(0, num_alfas_por_tribu - 1) == 0:
-        es_alfa = True
+        es_alfa = 1  # 1 indica que es alfa
     return nombre, apellido, tribu, es_alfa
