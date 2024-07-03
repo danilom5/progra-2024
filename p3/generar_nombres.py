@@ -8,7 +8,7 @@ with open('nombres_apellidos.csv', 'r') as file:
     nombres_apellidos = list(reader)
 
 # Lista de tribus disponibles
-tribus = ["Tribu A", "Tribu B", "Tribu C", "Tribu D"]
+tribus = [f"Tribu {i}" for i in range(1, 21)]  # Generar 20 tribus: Tribu 1, Tribu 2, ..., Tribu 20
 
 # Número de alfas por tribu
 num_alfas_por_tribu = 1

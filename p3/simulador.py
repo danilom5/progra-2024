@@ -3,7 +3,7 @@ class Simulador:
         """
         Constructor para inicializar un objeto Simulador.
         """
-        self.comunidad = None
+        self.comunidad = None  # Inicialmente, no hay comunidad asignada
 
     def set_comunidad(self, comunidad):
         """
@@ -21,6 +21,7 @@ class Simulador:
         Parámetros:
         pasos (int): Número de pasos a ejecutar en la simulación.
         """
-        for paso in range(pasos):
-            print(f"Paso {paso + 1}")
-            # Lógica de simulación a implementar aquí
+        for paso in range(1, pasos + 1):
+            print(f"Paso {paso}")
+            self.comunidad.actualizar_estados()  # Actualiza los estados de los ciudadanos según el modelo SIR
+            self.comunidad.imprimir_estado(paso)  # Imprime el estado actual de la comunidad
