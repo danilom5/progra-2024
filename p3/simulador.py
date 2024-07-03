@@ -14,14 +14,14 @@ class Simulador:
         """
         self.comunidad = comunidad
 
-    def run(self, pasos):
+    def run(self, dias):
         """
-        Ejecuta la simulación por un número especificado de pasos.
+        Ejecuta la simulación por un número especificado de días.
 
         Parámetros:
-        pasos (int): Número de pasos a ejecutar en la simulación.
+        dias (int): Número de días a ejecutar en la simulación.
         """
-        for paso in range(1, pasos + 1):
-            print(f"Paso {paso}")
+        for dia in range(1, dias + 1):
+            print(f"Día {dia}")
             self.comunidad.actualizar_estados()  # Actualiza los estados de los ciudadanos según el modelo SIR
-            self.comunidad.imprimir_estado(paso)  # Imprime el estado actual de la comunidad
+            self.comunidad.imprimir_estado(dia)  # Imprime el estado actual de la comunidad

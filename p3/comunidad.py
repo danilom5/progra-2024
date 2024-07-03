@@ -66,9 +66,33 @@ class Comunidad:
         for infectado in nuevos_infectados:
             infectado.estado = 2  # Actualizar el estado de los nuevos infectados
 
-    def obtener_estadisticas(self):
+    def obtener_estadisticas_por_tribu(self):
         """
-        Obtiene estadísticas de la comunidad para imprimir el estado actual.
+        Obtiene estadísticas de la comunidad por tribus.
+
+        Retorna:
+        dict: Diccionario con las estadísticas por tribu.
+        """
+        estadisticas = {}
+        for ciudadano in self.ciudadanos:
+            if ciudadano.tribu not in estadisticas:
+                estadisticas[ciudadano.tribu] = {'susceptibles': 0, 'infectados': 0, 'recuperados': 0, 'alfa': 'sano'}
+            if ciudadano.estado == 1:
+                estadisticas[ciudadano.tribu]['susceptibles'] += 1
+            elif ciudadano.estado == 2:
+                estadisticas[ciudadano.tribu]['infectados'] += 1
+                if ciudadano.es_alfa == 1:
+                    estadisticas[ciudadano.tribu]['alfa'] = 'infectado'
+            elif ciudadano.estado == 3:
+                estadisticas[ciudadano.tribu]['recuperados'] += 1
+                if ciudadano.es_alfa == 1:
+                    estadisticas[ciudadano.tribu]['alfa'] = 'recuperado'
+        
+        return estadisticas
+
+    def obtener_estadisticas_generales(self):
+        """
+        Obtiene estadísticas generales de la comunidad.
 
         Retorna:
         tuple: Contiene el número de susceptibles, infectados y recuperados.
@@ -78,12 +102,17 @@ class Comunidad:
         recuperados = sum(c.estado == 3 for c in self.ciudadanos)
         return susceptibles, infectados, recuperados
 
-    def imprimir_estado(self, paso):
+    def imprimir_estado(self, dia):
         """
-        Imprime el estado actual de la comunidad
+        Imprime el estado actual de la comunidad y de cada tribu.
 
         Parámetros:
-        paso (int): El número del paso actual de la simulación.
+        dia (int): El número del día actual de la simulación.
         """
-        susceptibles, infectados, recuperados = self.obtener_estadisticas()
+        print(f"Día {dia}")
+        estadisticas_tribus = self.obtener_estadisticas_por_tribu()
+        for tribu, stats in estadisticas_tribus.items():
+            print(f"{tribu}: El total de contagiados de la tribu ({stats['susceptibles'] + stats['infectados'] + stats['recuperados']}) son {stats['infectados']}, casos activos: {stats['infectados']}, casos recuperados: {stats['recuperados']}")
+            print(f"Alfa {tribu}: {stats['alfa']}")
+        susceptibles, infectados, recuperados = self.obtener_estadisticas_generales()
         print(f"El total de contagiados de la comunidad {self.num_ciudadanos} son {infectados}, casos activos: {infectados}, casos recuperados: {recuperados}")

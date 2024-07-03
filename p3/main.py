@@ -13,5 +13,5 @@ talca = Comunidad(num_ciudadanos=20000, promedio_conexion_fisica=8, enfermedad=c
 sim = Simulador()
 sim.set_comunidad(comunidad=talca)
 
-# Ejecutar la simulación por 45 pasos
-sim.run(pasos=45)
+# Ejecutar la simulación por 45 días
+sim.run(dias=45)
